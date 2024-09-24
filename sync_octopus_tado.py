@@ -11,7 +11,7 @@ def get_meter_reading_total_consumption(api_key, mprn, gas_serial_number):
     url = f"https://api.octopus.energy/v1/gas-meter-points/{mprn}/meters/{gas_serial_number}/consumption/"
     total_consumption = 0.0
 
-    while url:
+    while url is not None and url != "":
         response = requests.get(
             url + "?group_by=quarter", auth=HTTPBasicAuth(api_key, "")
         )
@@ -21,7 +21,7 @@ def get_meter_reading_total_consumption(api_key, mprn, gas_serial_number):
             total_consumption += sum(
                 interval["consumption"] for interval in meter_readings["results"]
             )
-            url = meter_readings.get("next", "")
+            url = meter_readings.get("next", None)  # Set to None if no next URL
         else:
             print(
                 f"Failed to retrieve data. Status code: {response.status_code}, Message: {response.text}"
@@ -30,6 +30,7 @@ def get_meter_reading_total_consumption(api_key, mprn, gas_serial_number):
 
     print(f"Total consumption is {total_consumption}")
     return total_consumption
+
 
 
 def send_reading_to_tado(username, password, reading):
