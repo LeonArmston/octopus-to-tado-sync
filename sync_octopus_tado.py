@@ -24,7 +24,7 @@ def get_meter_reading_total_consumption(api_key, mprn, gas_serial_number):
             url = meter_readings.get("next", None)  # Set to None if no next URL
         else:
             print(
-                f"Failed to retrieve data. Status code: {response.status_code}, Message: {response.text}"
+                f"Failed to retrieve data. Status code: {response.status_code}, Message: {response.text}, URL: {url}"
             )
             break
 
