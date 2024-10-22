@@ -76,8 +76,8 @@ def send_tarrif_to_tado(username, password, tarrif):
     
     
     
-    result = tado.set_eiq_tariff(from_date=valid_from, to_date=valid_to, tariff=value, is_period=True, unit="kWh")
-    print(f"Result send_reading_to_tado is {result}")
+    result = tado.set_eiq_tariff(from_date=valid_from, to_date=None, tariff=value, is_period=True, unit="kWh")
+    print(f"Result send_tarrif_to_tado is {result}")
 
 
 def parse_args():
