@@ -65,7 +65,7 @@ def send_tarrif_to_tado(username, password, tarrif):
     tado = Tado(username, password)
     
     value = tarrif["value_inc_vat"] / 100
-    valid_to = tarrif["valid_from"]
+    valid_to = tarrif["valid_to"]
     valid_from = tarrif["valid_from"]
     
     
