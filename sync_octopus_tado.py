@@ -71,7 +71,7 @@ def send_tarrif_to_tado(username, password, tarrif):
     
     
     # result = tado.set_eiq_tariff(from_date=valid_from, to_date=valid_to, tariff=value, is_period=True, unit="kWh")
-    result = tado.set_eiq_tariff(from_date=valid_from, tariff=value, is_period=True, unit="kWh")
+    result = tado.set_eiq_tariff(from_date=valid_from, tariff=value, is_period=False, unit="kWh")
     print(f"Result send_tarrif_to_tado is {result}")
 
 
