@@ -65,18 +65,12 @@ def send_tarrif_to_tado(username, password, tarrif):
     tado = Tado(username, password)
     
     value = tarrif["value_inc_vat"] / 100
-    valid_to = tarrif.get("valid_to")
-
-    if valid_to:
-        valid_to = valid_to[:-10]
-    else:
-        valid_to = None
-    
-    valid_from = tarrif["valid_from"][:-10]
+    valid_to = tarrif["valid_to"]
+    valid_from = tarrif["valid_to"][:-10]
     
     
     
-    result = tado.set_eiq_tariff(from_date=valid_from, to_date=None, tariff=value, is_period=True, unit="kWh")
+    result = tado.set_eiq_tariff(from_date=valid_from, to_date=valid_to, tariff=value, is_period=True, unit="kWh")
     print(f"Result send_tarrif_to_tado is {result}")
 
 
